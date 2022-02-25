@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.annotations.MessageSend;
 import com.example.model.Premiere;
 import org.springframework.stereotype.Service;
 
@@ -20,14 +21,17 @@ public class PremiereService {
         return null;
     }
 
+    @MessageSend
     public void addPremiere(String nameOfThePremiere, String description, int ageCategory, int count) {//описание премьеры
         premieres.add(new Premiere(nameOfThePremiere, description, ageCategory, count, new ArrayList<>()));
     }
 
+    @MessageSend
     public void deletePremiere(String nameOfThePremiere) {
         premieres.remove(getPremiereByName(nameOfThePremiere));
     }
 
+    @MessageSend
     public void updatePremiere(String oldNameOfThePremiere, String newNameOfThePremiere, String description, int ageCategory, int count) {
         deletePremiere(oldNameOfThePremiere);
         addPremiere(newNameOfThePremiere, description, ageCategory, count);
